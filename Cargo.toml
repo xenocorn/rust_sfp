@@ -2,6 +2,12 @@
     name = "rust_sfp"
     version = "0.1.0"
     authors = ["XenoCorn"]
+    description = "Rust implementation of SFP over TCP and unix domain sockets"
+    repository = "https://github.com/xenocorn/rust_sfp"
+    categories = ["network-programming"]
+    keywords = ["tcp", "unix", "socket"]
+    readme = "README.md"
+    license = "BSD-3"
     edition = "2018"
 
 
