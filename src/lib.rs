@@ -1,5 +1,5 @@
 pub use unisocket::SocketAddr;
-use unisocket::Stream;
+use unisocket::{Stream, Listener};
 use std::io;
 use std::time::Duration;
 use std::net::{TcpStream, Shutdown};
@@ -9,14 +9,6 @@ use std::io::{Read, Write};
 use std::fmt;
 use std::fmt::{Formatter, Debug};
 
-
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
-    }
-}
 
 #[derive(Debug)]
 pub enum WriteErr{
@@ -118,6 +110,42 @@ impl Iterator for Connection{
         match self.read_frame(){
             Ok(frame) => {Some(frame)}
             Err(_) => {None}
+        }
+    }
+}
+
+pub struct Server{
+    listener: Listener
+}
+
+impl From<Listener> for Server{
+    fn from(listener: Listener) -> Self {
+        Self{listener}
+    }
+}
+
+impl Server{
+    pub fn bind(s: &SocketAddr) -> io::Result<Self> {
+        Ok(Self{listener: Listener::bind(s)?})
+    }
+    pub fn bind_reuse(s: &SocketAddr, _mode: Option<u32>) -> io::Result<Self> {
+        Ok(Self{listener: Listener::bind_reuse(s, _mode)?})
+    }
+    pub fn accept(&self) -> io::Result<(Connection,SocketAddr)> {
+        let (stream, addr) = self.listener.accept()?;
+        Ok((Connection::from(stream), addr))
+    }
+}
+
+impl Iterator for Server{
+    type Item = (Connection,SocketAddr);
+
+    fn next(&mut self) -> Option<Self::Item> {
+        match self.accept(){
+            Ok((conn, addr)) => {
+                Some((conn, addr))
+            }
+            Err(_) => { None }
         }
     }
 }
