@@ -1,0 +1,9 @@
+[package]
+    name = "rust_sfp"
+    version = "0.1.0"
+    authors = ["XenoCorn"]
+    edition = "2018"
+
+
+[dependencies]
+    unisocket = "0.1.0"
