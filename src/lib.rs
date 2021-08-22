@@ -81,6 +81,10 @@ impl Connection{
     pub fn try_clone(&self) -> io::Result<Self>{
         Ok(Self::from(self.stream.try_clone()?))
     }
+    pub fn separate(self) -> io::Result<(ConnectionReader, ConnectionWriter)>{
+        let reader = self.try_clone()?;
+        Ok((ConnectionReader{connection: reader}, ConnectionWriter{connection: self}))
+    }
 }
 
 impl FrameWriter for Connection{
