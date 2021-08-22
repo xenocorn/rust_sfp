@@ -1,6 +1,6 @@
 [package]
     name = "rust_sfp"
-    version = "0.2.0"
+    version = "0.3.0"
     authors = ["XenoCorn"]
     description = "Rust implementation of SFP over TCP and unix domain sockets"
     repository = "https://github.com/xenocorn/rust_sfp"
