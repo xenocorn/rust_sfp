@@ -1,6 +1,6 @@
 [package]
     name = "rust_sfp"
-    version = "0.4.0"
+    version = "0.5.0"
     authors = ["XenoCorn"]
     description = "Rust implementation of SFP over TCP and unix domain sockets"
     repository = "https://github.com/xenocorn/rust_sfp"
@@ -12,4 +12,4 @@
 
 
 [dependencies]
-    unisocket = "0.1.0"
+    unisocket = "1.0.0"
