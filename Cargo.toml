@@ -7,7 +7,7 @@
     categories = ["network-programming"]
     keywords = ["tcp", "unix", "socket"]
     readme = "README.md"
-    license = "BSD-3"
+    license = "BSD-3-Clause-Modification"
     edition = "2018"
 
 
