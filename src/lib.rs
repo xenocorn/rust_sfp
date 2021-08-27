@@ -9,7 +9,7 @@ use std::net::{TcpStream, Shutdown};
 #[cfg(unix)]
 use std::os::unix::net as unix;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum WriteErr{
     I0(io::Error),
     TooLongFrame,
